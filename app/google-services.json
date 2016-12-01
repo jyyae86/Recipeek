@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "989794814726",
+    "firebase_url": "https://recipeek-d7ab5.firebaseio.com",
+    "project_id": "recipeek-d7ab5",
+    "storage_bucket": "recipeek-d7ab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989794814726:android:333343e713e2028d",
+        "android_client_info": {
+          "package_name": "jackiechans.recipeek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989794814726-1it30lpp8gnrnd2bchpij5ukvpn0qk69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiN0Nx8nkNSuFPPp7g-KodkwddXVAnMb0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
