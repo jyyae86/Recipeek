@@ -7,51 +7,103 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
-    <!--tools:context="ca.uottawa.help.helpActivity"-->
-
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="jackiechans.recipeek.helpActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/helpScroll">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/toTopButton01">
+            android:id="@+id/layoutOfHelp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:text="Welcome to Recipeek! This is the help page, where you'll find instructions on the various tools present in the app. Just press one of the links below to find what you're looking for!\n"
                 android:id="@+id/introductionText" />
 
-            <TextView
-                android:text="•Signing up to a Recipeek account.\n•Logging into your Recipeek account.\n•Searching for a recipe.\n•Favouriting a recipe\n•Making a recipe and uploading it online.\n"
+            <Button
+                android:text="•Signing up to a Recipeek account."
+                android:textColor="#9acd32"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signUpJump"
+                android:onClick="onClickFocusText" />
+
+            <Button
+                android:text="•Logging into your Recipeek account."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#9acd32"
-                android:textSize="20dp"
-                android:layout_below="@+id/introductionText"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/searchText" />
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:id="@+id/loggingInJump"
+                android:onClick="onClickFocusText" />
+
+            <Button
+                android:text="•Searching for a recipe."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#9acd32"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:id="@+id/searchJump"
+                android:onClick="onClickFocusText" />
+
+            <Button
+                android:text="•Favouriting a recipe."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#9acd32"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:id="@+id/favouriteJump"
+                android:onClick="onClickFocusText" />
+
+            <Button
+                android:text="•Making a recipe and uploading it online."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#9acd32"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:id="@+id/createRecipeJump"
+                android:onClick="onClickFocusText" />
 
             <TextView
-                android:text="•To sign up to a Recipeek account using email, press the &quot;Sign in&quot; button on the main page. From there, you'll find a button under the two text boxes. Press the &quot;Sign Up&quot; button, fill out the information required, and voila! You now have a Recipeek account! From there, you can create your own recipes and favourtie ones you find online."
+                android:text="•To sign up to a Recipeek account using email, press the &quot;Sign in&quot; button on the main page. From there, you'll find a button under the two text boxes. Press the &quot;Sign Up&quot; button, fill out the information required, and voila! You now have a Recipeek account! From there, you can create your own recipes and favourtie ones you find online.\n"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:textColor="#000000"
-                android:id="@+id/signUpDescriptionComplete"
+                android:id="@+id/signUpHelp"
                 android:layout_weight="0.43"
                 android:gravity="left"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_below="@+id/signUpText"
                 android:layout_alignLeft="@+id/signUpText"
                 android:layout_alignStart="@+id/signUpText" />
+
+            <TextView
+                android:text="Note: When creating your profile, please choose an active email address and a password containing at least 6 characters."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:id="@+id/notePassword" />
 
             <Button
                 android:text="Top"
@@ -60,20 +112,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="0dp"
-                android:id="@+id/topButton1" />
+                android:gravity="right"
+                android:id="@+id/topButton1"
+                android:onClick="onClickFocusText" />
 
             <TextView
                 android:text='•To Log in to your Recipeek account, press the "Sign in" button on the main page. From there, fill both information boxes required, then press the Sign in button on the bottom of the page. You will then be signed into your account.'
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:id="@+id/loginScreenHelp"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/signUpDescriptionComplete"
-                android:layout_alignStart="@+id/signUpDescriptionComplete" />
+                android:layout_alignLeft="@+id/signUpHelp"
+                android:layout_alignStart="@+id/signUpHelp" />
 
             <Button
                 android:text="Top"
@@ -82,14 +136,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="0dp"
-                android:id="@+id/topButton2" />
+                android:gravity="right"
+                android:id="@+id/topButton2"
+                android:onClick="onClickFocusText" />
 
             <TextView
                 android:text="•To search for a recipe, you'll see a search box with &quot;Discover!&quot; written inside of it. Press the box, and start tryping in your ingredients. From there, press the magnifying glass to search. From htere, your results will be displayed as a vertical list. Just press on a recipe to open it and view it's details."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 android:id="@+id/searchHelp" />
@@ -101,14 +157,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="0dp"
-                android:id="@+id/topButton3" />
+                android:gravity="right"
+                android:id="@+id/topButton3"
+                android:onClick="onClickFocusText" />
 
             <TextView
                 android:text="•To favourite a recipe after you've opened it, press the star logo on the top right of the screen to add it to your favourite list. To see what recipes you've favourited, simply press &quot;My Favourites&quot; to open the list containing all of them.\n"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 android:id="@+id/favouriteHelp" />
@@ -129,14 +187,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="0dp"
-                android:id="@+id/topButton4" />
+                android:gravity="right"
+                android:id="@+id/topButton4"
+                android:onClick="onClickFocusText" />
 
             <TextView
                 android:text="•To add a recipe, press &quot;Teach!&quot; on the main Recipeek page. From there, you will be taken to the recipe creation page. You'll have to add a title, a thumbnail picture for the final result of the recipe, the ingredients needed and their quantity and the steps needed.\n"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 android:id="@+id/recipeMakingHelp" />
@@ -166,9 +226,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="0dp"
-                android:id="@+id/topButton5" />
+                android:gravity="right"
+                android:id="@+id/topButton5"
+                android:onClick="onClickFocusText" />
 
         </LinearLayout>
     </ScrollView>
