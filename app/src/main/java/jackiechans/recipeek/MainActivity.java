@@ -1,13 +1,17 @@
 package jackiechans.recipeek;
 
-import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+/**
+ * This is the outdated homepage, check HomeActivity for the new homepage
+ */
 
 public class MainActivity extends AppCompatActivity {
     //created firebase database and reference to it

@@ -13,4 +13,31 @@
     tools:context="jackiechans.recipeek.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            app:srcCompat="@drawable/recipeek_logo"
+            android:id="@+id/imageView13"
+            android:layout_height="140dp" />
+
+        <SearchView
+            android:hint="Search for ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="searchForRecipes"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:entries="@+array/recipe_category"/>
+    </LinearLayout>
 </RelativeLayout>

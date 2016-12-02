@@ -38,7 +38,6 @@ public class SignInActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mAuth = FirebaseAuth.getInstance();
-        Log.d("jhk","kjj");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -72,7 +71,7 @@ public class SignInActivity extends AppCompatActivity{
         intent.putExtra(SIGN_UP_PASSWORD, pssd);
         startActivity(intent);
     }
-    //todo, do you still need view as a parameter? if you dont, how does it know the view for a new activity
+
     protected void loginWithEmail(String email, String password){
         Log.d("enter the method","true");
         final Intent intent = new Intent(this, HomeActivity.class);
@@ -92,7 +91,6 @@ public class SignInActivity extends AppCompatActivity{
                         }else{
                             Toast.makeText(SignInActivity.this, "Authentication Successful", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
-                            Log.d("asdf","adsf");
                         }
 
                         // ...
