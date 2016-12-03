@@ -15,7 +15,7 @@
 
 
     <Button
-        android:text="SignIn"
+        android:text="SignOut"
         android:layout_marginLeft="291dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,11 +28,11 @@
         app:srcCompat="@drawable/recipeek_logo"
         android:id="@+id/imageView" />
 
-    <SearchView
+    <Button
+        android:text="Search"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:queryHint="discover"/>
+        android:id="@+id/button9" />
 
     <Button
         android:text="Teach"

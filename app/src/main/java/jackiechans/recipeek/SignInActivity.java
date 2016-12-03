@@ -74,7 +74,7 @@ public class SignInActivity extends AppCompatActivity{
 
     protected void loginWithEmail(String email, String password){
         Log.d("enter the method","true");
-        final Intent intent = new Intent(this, HomeActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
