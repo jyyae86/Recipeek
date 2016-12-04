@@ -18,10 +18,9 @@ public class Recipe {
 
 
     //constructor
-    public Recipe(String title, Ingredient[] ingredients, Step[] steps){
+    public Recipe(String title, Ingredient[] ingredients){
         this.title = title;
         this.ingredients = ingredients;
-        this.steps = steps;
     }
 
     public Ingredient[] getIngredients(){
