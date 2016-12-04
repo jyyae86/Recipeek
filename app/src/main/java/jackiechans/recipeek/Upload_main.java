@@ -11,7 +11,7 @@ import android.widget.*;
 import android.support.v7.app.AlertDialog;
 import android.content.*;
 import android.support.*;
-
+//Junjie Chen, University of Ottawa ,2016-12-04
 
 public class Upload_main extends AppCompatActivity {
 
@@ -26,6 +26,7 @@ public class Upload_main extends AppCompatActivity {
     }
 
     public void createActivityDone(View view) {
+        // this will check no empty edit text before uploaded
         EditText titleEdit = (EditText) findViewById(R.id.titleEditText);
         String step1 = ((EditText) findViewById(R.id.editText17)).getText().toString();
         String step2 = ((EditText) findViewById(R.id.editText18)).getText().toString();
@@ -55,9 +56,11 @@ public class Upload_main extends AppCompatActivity {
     }
     public void backToMain(View view){
         this.finish();
-    }
-    public void OpenCamera(View view){
+    } // OnClick method, go to main UI
 
+    public void OpenCamera(View view){
+        //Onclick method, it will pop out a dialog which shows 3 choices to user
+        // Take photo or Choose from library or Cancel
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
@@ -75,7 +78,7 @@ public class Upload_main extends AppCompatActivity {
         builder.show();
     }
     public void cameraIntent(){
-
+        // this will open the camera
 
 
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -85,20 +88,19 @@ public class Upload_main extends AppCompatActivity {
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
         EditText mEditText = (EditText) findViewById(R.id.ingredient_name_0);
         int width = mEditText.getWidth();
-        mLayout.addView(createNewTextView(mEditText.getText().toString()));
+        mLayout.addView(createNewEditText(mEditText.getText().toString()));
 
-
+//asdasdasd
 
     }
 
-    private EditText createNewTextView(String text) {
-
+    private EditText createNewEditText(String text) {
+    // this will create Edit Text dynamically
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         EditText newtext = new EditText(this);
         newtext.setLayoutParams(lparams);
         newtext.setWidth(350);
         newtext.setMinimumHeight(50);
-        newtext.setHint();
         return newtext;
     }
     /*
