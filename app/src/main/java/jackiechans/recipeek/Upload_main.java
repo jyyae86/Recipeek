@@ -13,7 +13,7 @@ import android.content.*;
 import android.support.*;
 
 import java.util.LinkedList;
-
+import jackiechans.recipeek.Recipe;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
 public class Upload_main extends AppCompatActivity {
@@ -48,6 +48,9 @@ public class Upload_main extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
+            Ingredient[] ingredients = new Ingredient[1];
+
+            Recipe myRecipe = new Recipe(title);
             this.finish();
             Intent intent = new Intent(this, done.class);
             startActivity(intent);

@@ -6,48 +6,91 @@ package jackiechans.recipeek;
 
 public class Recipe {
     //Creates a private
-    private class Step{
-        private Step nextStep;
-        private String value;
 
-        private Step(String value, Step next){
-            this.value = value;
-            this.nextStep = next;
+
+    protected class Step{
+        private String information;
+
+        private Step(String information){
+            this.information=information;
+        }
+        public String getInformation(){
+            return this.information;
         }
     }
 
-    private class Ingredient{
+    protected class Ingredient{
         private String name;
-        private Ingredient nextIngredient;
+        private String quantity;
 
-        private Ingredient(String name, Ingredient next){
+        private Ingredient(String name, String quantity){
             this.name = name;
-            this.nextIngredient = next;
+            this.quantity = quantity;
+        }
+        public String getName(){
+            return this.name;
+        }
+        public String getQuantity(){
+            return this.quantity;
         }
     }
-    //Instance variable
-    private String name;
-    private Ingredient firstIngredient;
-    private Step firstStep;
-    private String country;
 
-    //
+
+    //Instance variable
+    private String title;
+    private Ingredient firstIngredient;
+    private String country;
+    protected Ingredient[] ingredients;
+    protected Step[] steps;
+
 
     //constructor
-    public Recipe(String name, String firstIngredient, String firstStep, String country){
-        this.name = name;
-        this.firstIngredient = new Ingredient(firstIngredient, null);
-        this.firstStep = new Step(firstStep, null);
+    public Recipe(String title, Ingredient[] ingredients, Step[] steps){
+        this.title = title;
+        this.ingredients = ingredients;
+        this.steps = steps;
     }
 
-    public void addStep(String value){
-        //Loops through the steps until it gets to the last one, then it adds it
-        Step temp = firstStep;
-        while(this.firstStep.nextStep != null){
-            temp = temp.nextStep;
-        }
-        temp.nextStep = new Step(value, null);
+    public Ingredient[] getIngredients(){
+        return this.ingredients;
     }
+    public Step[] getSteps(){
+        return this.steps;
+    }
+
+    public String getTitle(){
+        return this.title;
+    }
+    public String toString(){
+        return "recipe name:"+this.title;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // prolly need to update json too
+    /*
 
     public void addIngredient(String value){
         //Loops through the ingredients until it gets to the last one, then it adds it
@@ -58,8 +101,6 @@ public class Recipe {
         temp.nextIngredient = new Ingredient(value, null);
     }
 
-    // prolly need to update json too
-    //todo not finished
     public void editStep(int stepNum, String value){
         //loops until the step number, then changes the value
         Step temp = firstStep;
@@ -131,5 +172,5 @@ public class Recipe {
     }
     //Shouldnt need to set firstStep and firstIngredient because they can be edited
 
-
+*/
 }
