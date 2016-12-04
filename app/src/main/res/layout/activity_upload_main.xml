@@ -50,7 +50,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
@@ -178,32 +178,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/ingredientContainer">
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:id="@+id/ingredient_0">
-
-                            <EditText
-                                android:ems="10"
-                                android:id="@+id/ingredient_name_0"
-                                android:layout_weight="1"
-                                android:hint="Type your ingredient"
-                                android:inputType="text"
-                                android:layout_width="150dp"
-                                android:layout_height="45dp" />
-
-                            <EditText
-                                android:layout_width="150dp"
-                                android:layout_height="45dp"
-                                android:inputType="numberDecimal"
-                                android:ems="10"
-                                android:id="@+id/ingrendent_quantity_0"
-                                android:layout_weight="1"
-                                android:hint="Quantity" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
                     <Button
@@ -256,45 +230,18 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <EditText
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText17"
-                    android:hint="Add step" />
+                    android:id="@+id/steps_container"></LinearLayout>
 
-                <EditText
+                <Button
+                    android:text="MORE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText18"
-                    android:hint="Add step" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText19"
-                    android:hint="Add step" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText20"
-                    android:hint="Add step" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText21"
-                    android:hint="Add step" />
+                    android:id="@+id/more_step"
+                    android:onClick="moreStep"/>
 
             </LinearLayout>
         </ScrollView>
