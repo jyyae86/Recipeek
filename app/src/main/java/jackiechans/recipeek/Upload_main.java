@@ -38,6 +38,23 @@ public class Upload_main extends AppCompatActivity {
         String title = titleEdit.getText().toString();
         String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
         String done_error_title = "Error!";
+        int pointer2=ingredientNameID.getFirst();
+        for(int i :ingredientNameID){
+            if (!hasContent(i)){
+                ingredientNameID.remove(ingredientNameID.indexOf(i));
+            }
+        }
+        Ingredient[] ingredients = new Ingredient[ingredientNameID.size()];
+        int pointer = ingredientNameID.getFirst();
+        for(int i=0;i<ingredientNameID.size();i++){
+            EditText myEdit = (EditText) findViewById(pointer);
+            String content = myEdit.getText().toString();
+            Ingredient myingredient = new Ingredient(content,"null");
+            ingredients[i]= myingredient;
+            pointer=pointer.next;
+
+        }
+
 
 
         if (title.isEmpty()) {//check content is not empty
@@ -48,13 +65,32 @@ public class Upload_main extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
-            Ingredient[] ingredients = new Ingredient[1];
+            Step[] steps = new Step[1];
 
-            Recipe myRecipe = new Recipe(title);
-            this.finish();
-            Intent intent = new Intent(this, done.class);
-            startActivity(intent);
+            Recipe myRecipe = new Recipe(title,ingredients,steps);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage(myRecipe.toString())
+                    .setTitle("Your recipe")
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            //this.finish();
+            //Intent intent = new Intent(this, done.class);
+            //startActivity(intent);
         }
+    }
+    public boolean hasContent(int id){ //this will check an ID has content or not
+
+        EditText editText = (EditText) findViewById(id);
+        String content = editText.getText().toString();
+        if(content.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void backToMain(View view){

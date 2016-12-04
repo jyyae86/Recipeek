@@ -1,47 +1,20 @@
 package jackiechans.recipeek;
 
+import static java.lang.String.valueOf;
+
 /**
- * Created by jyyae86 on 2016-12-03.
+ * Junjie Chen, University Of Ottawa ,2016-12-04
  */
 
 public class Recipe {
     //Creates a private
 
 
-    protected class Step{
-        private String information;
-
-        private Step(String information){
-            this.information=information;
-        }
-        public String getInformation(){
-            return this.information;
-        }
-    }
-
-    protected class Ingredient{
-        private String name;
-        private String quantity;
-
-        private Ingredient(String name, String quantity){
-            this.name = name;
-            this.quantity = quantity;
-        }
-        public String getName(){
-            return this.name;
-        }
-        public String getQuantity(){
-            return this.quantity;
-        }
-    }
-
-
     //Instance variable
-    private String title;
-    private Ingredient firstIngredient;
+    public String title;
     private String country;
-    protected Ingredient[] ingredients;
-    protected Step[] steps;
+    public Ingredient[] ingredients;
+    public Step[] steps;
 
 
     //constructor
@@ -61,8 +34,11 @@ public class Recipe {
     public String getTitle(){
         return this.title;
     }
+    public int ingredientsNum(){
+        return this.ingredients.length;
+    }
     public String toString(){
-        return "recipe name:"+this.title;
+        return "recipe name:"+this.title+" There are "+valueOf(ingredients.length) +"ingredients"+" and There are "+valueOf(steps.length) +"steps";
     }
 
 
