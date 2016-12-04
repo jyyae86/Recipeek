@@ -2,8 +2,10 @@ package jackiechans.recipeek;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
 import android.support.v7.app.AlertDialog;
@@ -78,6 +80,26 @@ public class Upload_main extends AppCompatActivity {
 
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent,0);
+    }
+    public void MoreIngredient(View view){ //OnClick to add more ingredients
+        LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
+        EditText mEditText = (EditText) findViewById(R.id.ingredient_name_0);
+        int width = mEditText.getWidth();
+        mLayout.addView(createNewTextView(mEditText.getText().toString()));
+
+
+
+    }
+
+    private EditText createNewTextView(String text) {
+
+        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        EditText newtext = new EditText(this);
+        newtext.setLayoutParams(lparams);
+        newtext.setWidth(350);
+        newtext.setMinimumHeight(50);
+        newtext.setHint();
+        return newtext;
     }
     /*
     private void galleryIntent()

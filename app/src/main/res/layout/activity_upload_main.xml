@@ -67,7 +67,7 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="448dp">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -175,7 +175,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="90dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ingredientContainer">
 
                         <LinearLayout
@@ -185,17 +185,17 @@
                             android:id="@+id/ingredient_0">
 
                             <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
                                 android:ems="10"
                                 android:id="@+id/ingredient_name_0"
                                 android:layout_weight="1"
                                 android:hint="Type your ingredient"
-                                android:inputType="text" />
+                                android:inputType="text"
+                                android:layout_width="150dp"
+                                android:layout_height="45dp" />
 
                             <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="150dp"
+                                android:layout_height="45dp"
                                 android:inputType="numberDecimal"
                                 android:ems="10"
                                 android:id="@+id/ingrendent_quantity_0"
@@ -204,12 +204,14 @@
 
                         </LinearLayout>
 
-                        <Button
-                            android:text="More ingredients"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/button9" />
                     </LinearLayout>
+
+                    <Button
+                        android:text="More"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/more_ingredient_button"
+                        android:onClick="MoreIngredient"/>
 
                     <LinearLayout
                         android:orientation="horizontal"
