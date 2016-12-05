@@ -1,11 +1,13 @@
 package jackiechans.recipeek;
 
+import java.io.Serializable;
+
 /**
  * Created by Rawaz on 2016-12-04.
  */
 
 
-public class RecipeContainer{
+public class RecipeContainer implements Serializable{
 
     private static RecipeNode first;
     private static RecipeNode last;

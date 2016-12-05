@@ -1,12 +1,14 @@
 package jackiechans.recipeek;
 
+import java.io.Serializable;
+
 import static java.lang.String.valueOf;
 
 /**
  * Junjie Chen, University Of Ottawa ,2016-12-04
  */
 
-public class Recipe {
+public class Recipe implements Serializable {
     //Creates a private
 
 

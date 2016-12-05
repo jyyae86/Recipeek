@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Recipeek.iml" filepath="$PROJECT_DIR$/Recipeek.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecipeekAgain.iml" filepath="$PROJECT_DIR$/RecipeekAgain.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

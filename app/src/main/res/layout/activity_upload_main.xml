@@ -151,11 +151,15 @@
                             android:entries="@array/recipe_category"
                             />
 
-                        <Spinner
-                            android:layout_width="155dp"
+                        <EditText
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:ems="10"
                             android:id="@+id/type"
-                            android:layout_weight="0.09" />
+                            android:layout_weight="0.80"
+                            android:hint="Type" />
+
                     </LinearLayout>
 
                     <LinearLayout
