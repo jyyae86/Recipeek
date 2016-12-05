@@ -78,6 +78,8 @@ public class Upload_main extends AppCompatActivity {
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
         } else {
+            Spinner category = (Spinner)findViewById(R.id.category);
+            String categoryString = category.getSelectedItem().toString();
             while(!stepID.isEmpty()){
                 int temp = stepID.pop();
                 if (hasContent(temp)){
@@ -102,6 +104,7 @@ public class Upload_main extends AppCompatActivity {
 
             Recipe myRecipe = new Recipe(title,ingredients);
             myRecipe.setSteps(steps);
+            myRecipe.setCategory(categoryString);
 /*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())

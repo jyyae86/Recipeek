@@ -13,6 +13,7 @@ public class Recipe {
     //Instance variable
     public String title;
     public String country;
+    public String category;
     public Ingredient[] ingredients;
     public Step[] steps;
 
@@ -40,6 +41,9 @@ public class Recipe {
     public void setSteps(Step[] steps){
         this.steps=steps;
 
+    }
+    public void setCategory(String category){
+        this.category=category;
     }
     public String toString(){
         return "recipe name:"+title+" In this recipe, there are "+valueOf(ingredients.length) +"ingredients";
