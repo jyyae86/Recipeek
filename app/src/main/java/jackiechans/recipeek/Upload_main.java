@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,8 @@ public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientQuantityID= new Stack();
     LinkedList<Integer> stepID= new LinkedList();
     static int GlobalId =1;
-
+    String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
+    String done_error_title = "Error!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,50 +38,78 @@ public class Upload_main extends AppCompatActivity {
     public void createActivityDone(View view) {
         // this will check no empty edit text before uploaded
         //get the results and store in a linkedList
-        Stack<Integer> stack = new Stack();
-        EditText titleEdit = (EditText) findViewById(R.id.titleEditText);
+        Stack<String> stack = new Stack();
+        Stack<String> stackquantity = new Stack();
+        Stack<Integer> nameBackUp = new Stack();
+        Stack<Integer> quantityBackUp = new Stack();
 
-        String title = titleEdit.getText().toString();
-        String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
-        String done_error_title = "Error!";
+        String title = getStringById(R.id.titleEditText);
 
-
-
-
-
-        if (title.isEmpty()) {//check content is not empty
+        while(!ingredientNameID.isEmpty()){
+            int temp = ingredientNameID.pop();
+            nameBackUp.push(temp);
+            if(hasContent(temp)){
+                String content =getStringById(temp);
+                stack.push(content); //push to a new stack
+            }
+        }
+        while(!ingredientQuantityID.isEmpty()){
+            int temp = ingredientQuantityID.pop();
+            quantityBackUp.push(temp);
+            if(hasContent(temp)){
+                String content =getStringById(temp);
+                stackquantity.push(content); //push to a new stack which holds quantity
+            }
+        }
+        if (title.isEmpty()||(stackquantity.size()!=stack.size())) {//if no title , cannot submit
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(done_error_message)
                     .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
+            stack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
         } else {
 
-           // Recipe myRecipe = new Recipe(title,ingredients);
+            Ingredient[] ingredients = new Ingredient[stack.size()];
+            int i=0;
+            while(!stack.isEmpty()){
+                ingredients[i]= new Ingredient(stack.pop(),stackquantity.pop());
+                i++;
 
+            }
+
+            Recipe myRecipe = new Recipe(title,ingredients);
+/*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
-            builder.setMessage(ingredientNameID.pop())
+            builder.setMessage(myRecipe.toString())
                     .setTitle("Your recipe")
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-
-            //this.finish();
-            //Intent intent = new Intent(this, done.class);
-            //startActivity(intent);
+*/
+            this.finish();
+            Intent intent = new Intent(this, done.class);
+            startActivity(intent);
         }
     }
     public boolean hasContent(int id){ //this will check an ID has content or not
-
-        EditText editText = (EditText) findViewById(id);
-        String content = editText.getText().toString();
+        String content = getStringById(id);
         if(content.isEmpty()){
             return false;
         }else{
             return true;
         }
+    }
 
+    public String getStringById(int id){
+        EditText my = (EditText)findViewById(id);
+        return my.getText().toString();
     }
 
     public void backToMain(View view){
@@ -143,6 +173,7 @@ public class Upload_main extends AppCompatActivity {
         newtext.setLayoutParams(lparams);
         newtext.setWidth(350);
         newtext.setMinimumHeight(50);
+        newtext.setInputType(InputType.TYPE_CLASS_TEXT);
         return newtext;
     }
     public void moreStep(View view){ //OnClick , Add more steps
