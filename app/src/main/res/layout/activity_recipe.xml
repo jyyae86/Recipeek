@@ -35,7 +35,7 @@
                     android:id="@+id/recipeTitle"
                     android:layout_weight="0.03"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:text="hello" />
+                    android:text="Food" />
 
                 <LinearLayout
                     android:orientation="horizontal"
