@@ -7,6 +7,7 @@ package jackiechans.recipeek;
 public class Step{
     private String information;
 
+
     public Step(String information){
         this.information=information;
     }

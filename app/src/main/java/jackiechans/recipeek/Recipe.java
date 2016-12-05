@@ -12,9 +12,11 @@ public class Recipe {
 
     //Instance variable
     public String title;
-    private String country;
+    public String country;
+    public String category;
     public Ingredient[] ingredients;
     public Step[] steps;
+
 
 
     //constructor
@@ -36,8 +38,15 @@ public class Recipe {
     public int ingredientsNum(){
         return this.ingredients.length;
     }
+    public void setSteps(Step[] steps){
+        this.steps=steps;
+
+    }
+    public void setCategory(String category){
+        this.category=category;
+    }
     public String toString(){
-        return "recipe name:"+this.title+" There are "+valueOf(ingredients.length) +"ingredients"+" and There are "+valueOf(steps.length) +"steps";
+        return "recipe name:"+title+" In this recipe, there are "+valueOf(ingredients.length) +"ingredients";
     }
 
 
