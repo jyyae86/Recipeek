@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="My Recipes"
+            android:layout_width="319dp"
+            android:id="@+id/textView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:layout_height="100dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="34dp">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </SearchView>
+
+    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:text="These are your recipes:" />
+            android:text="Recipes found:" />
 
         <ListView
             android:id="@+id/listView"
