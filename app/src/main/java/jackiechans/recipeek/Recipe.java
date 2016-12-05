@@ -37,6 +37,10 @@ public class Recipe {
     public int ingredientsNum(){
         return this.ingredients.length;
     }
+    public void setSteps(Step[] steps){
+        this.steps=steps;
+
+    }
     public String toString(){
         return "recipe name:"+title+" In this recipe, there are "+valueOf(ingredients.length) +"ingredients";
     }

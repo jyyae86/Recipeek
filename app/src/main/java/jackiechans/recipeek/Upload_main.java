@@ -25,7 +25,7 @@ import static java.lang.String.valueOf;
 public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientNameID= new Stack();
     Stack<Integer> ingredientQuantityID= new Stack();
-    LinkedList<Integer> stepID= new LinkedList();
+    Stack<Integer> stepID= new Stack();
     static int GlobalId =1;
     String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
     String done_error_title = "Error!";
@@ -42,6 +42,7 @@ public class Upload_main extends AppCompatActivity {
         //get the results and store in a linkedList
         Stack<String> stack = new Stack();
         Stack<String> stackquantity = new Stack();
+        Stack<String> stepStack = new Stack();
         Stack<Integer> nameBackUp = new Stack();
         Stack<Integer> quantityBackUp = new Stack();
 
@@ -77,6 +78,19 @@ public class Upload_main extends AppCompatActivity {
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
         } else {
+            while(!stepID.isEmpty()){
+                int temp = stepID.pop();
+                if (hasContent(temp)){
+                    stepStack.push(getStringById(temp));
+                }
+            }
+            Step[] steps = new Step[stepStack.size()];
+            int j =0;
+            while(!stepStack.isEmpty()){
+                steps[j]=new Step(stepStack.pop());
+                j++;
+            }
+
 
             Ingredient[] ingredients = new Ingredient[stack.size()];
             int i=0;
@@ -87,6 +101,7 @@ public class Upload_main extends AppCompatActivity {
             }
 
             Recipe myRecipe = new Recipe(title,ingredients);
+            myRecipe.setSteps(steps);
 /*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())
@@ -153,8 +168,8 @@ public class Upload_main extends AppCompatActivity {
         GlobalId++;
         quantityEditText.setId((+GlobalId));
         GlobalId++;
-        ingredientEditText.setHint(valueOf(ingredientEditText.getId()));
-        quantityEditText.setHint(valueOf(quantityEditText.getId()));
+        ingredientEditText.setHint("Add ingredient");
+        quantityEditText.setHint("Add quantity");
         linearLayout.addView(ingredientEditText);
         linearLayout.addView(quantityEditText);
 
@@ -182,7 +197,7 @@ public class Upload_main extends AppCompatActivity {
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.steps_container);
         EditText stepEditText =createNewStepEditText();
         mLayout.addView(stepEditText);
-        stepID.add(stepEditText.getId());
+        stepID.push(stepEditText.getId());
     }
     private EditText createNewStepEditText() { //this will creat step editText
         // this will create Edit Text dynamically
@@ -192,6 +207,9 @@ public class Upload_main extends AppCompatActivity {
         newtext.setWidth(700);
         newtext.setMinimumHeight(50);
         newtext.setHint("Add Step");
+        newtext.setId(+GlobalId);
+        GlobalId++;
+
         return newtext;
     }
     /*
