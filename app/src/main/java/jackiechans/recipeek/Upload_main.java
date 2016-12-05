@@ -13,6 +13,8 @@ import android.content.*;
 import android.support.*;
 
 import java.util.LinkedList;
+import java.util.Stack;
+
 import jackiechans.recipeek.Recipe;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
@@ -32,12 +34,29 @@ public class Upload_main extends AppCompatActivity {
     public void createActivityDone(View view) {
         // this will check no empty edit text before uploaded
         //get the results and store in a linkedList
-
+        Stack<Integer> stack = new Stack();
         EditText titleEdit = (EditText) findViewById(R.id.titleEditText);
 
         String title = titleEdit.getText().toString();
         String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
         String done_error_title = "Error!";
+
+        for(int i :ingredientNameID){
+            if (!hasContent(i)){
+                ingredientNameID.remove(ingredientNameID.indexOf(i));
+            }else{
+                stack.push(i);
+            }
+        }
+        Ingredient[] ingredients = new Ingredient[stack.size()];
+        int counter = 0;
+        while(!stack.isEmpty()){
+            EditText myEditext = (EditText)findViewById(stack.pop());
+            String content = myEditext.getText().toString();
+            Ingredient ingredient = new Ingredient(content,"DunnmyQuantity");
+            ingredients[counter]=ingredient;
+        }
+
 
 
         if (title.isEmpty()) {//check content is not empty
@@ -48,13 +67,31 @@ public class Upload_main extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
-            Ingredient[] ingredients = new Ingredient[1];
 
-            Recipe myRecipe = new Recipe(title);
-            this.finish();
-            Intent intent = new Intent(this, done.class);
-            startActivity(intent);
+            //Recipe myRecipe = new Recipe(title,ingredients);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage(myRecipe.toString())
+                    .setTitle("Your recipe")
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            //this.finish();
+            //Intent intent = new Intent(this, done.class);
+            //startActivity(intent);
         }
+    }
+    public boolean hasContent(int id){ //this will check an ID has content or not
+
+        EditText editText = (EditText) findViewById(id);
+        String content = editText.getText().toString();
+        if(content.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void backToMain(View view){

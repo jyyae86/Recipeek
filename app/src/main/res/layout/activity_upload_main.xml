@@ -148,6 +148,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/category"
                             android:layout_weight="0.80"
+                            android:entries="@array/recipe_category"
                             />
 
                         <Spinner
