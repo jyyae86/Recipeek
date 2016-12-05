@@ -16,13 +16,15 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import jackiechans.recipeek.Recipe;
+
+import static java.lang.String.valueOf;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
 public class Upload_main extends AppCompatActivity {
-    LinkedList<Integer> ingredientNameID= new LinkedList();
-    LinkedList<Integer> ingredientQuantityID= new LinkedList();
+    Stack<Integer> ingredientNameID= new Stack();
+    Stack<Integer> ingredientQuantityID= new Stack();
     LinkedList<Integer> stepID= new LinkedList();
-
+    static int GlobalId =1;
 
 
     @Override
@@ -41,21 +43,7 @@ public class Upload_main extends AppCompatActivity {
         String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
         String done_error_title = "Error!";
 
-        for(int i :ingredientNameID){
-            if (!hasContent(i)){
-                ingredientNameID.remove(ingredientNameID.indexOf(i));
-            }else{
-                stack.push(i);
-            }
-        }
-        Ingredient[] ingredients = new Ingredient[stack.size()];
-        int counter = 0;
-        while(!stack.isEmpty()){
-            EditText myEditext = (EditText)findViewById(stack.pop());
-            String content = myEditext.getText().toString();
-            Ingredient ingredient = new Ingredient(content,"DunnmyQuantity");
-            ingredients[counter]=ingredient;
-        }
+
 
 
 
@@ -68,10 +56,10 @@ public class Upload_main extends AppCompatActivity {
             dialog.show();
         } else {
 
-            //Recipe myRecipe = new Recipe(title,ingredients);
+           // Recipe myRecipe = new Recipe(title,ingredients);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
-            builder.setMessage(myRecipe.toString())
+            builder.setMessage(ingredientNameID.pop())
                     .setTitle("Your recipe")
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
@@ -129,12 +117,17 @@ public class Upload_main extends AppCompatActivity {
         mLayout.addView(linearLayout);
         EditText ingredientEditText = createNewEditText();
         EditText quantityEditText = createNewEditText();
-        ingredientEditText.setHint("Add ingredient");
-        quantityEditText.setHint("Quantity");
+        ingredientEditText.setId(+GlobalId);
+        GlobalId++;
+        quantityEditText.setId((+GlobalId));
+        GlobalId++;
+        ingredientEditText.setHint(valueOf(ingredientEditText.getId()));
+        quantityEditText.setHint(valueOf(quantityEditText.getId()));
         linearLayout.addView(ingredientEditText);
         linearLayout.addView(quantityEditText);
-        ingredientNameID.add(ingredientEditText.getId());
-        ingredientQuantityID.add(quantityEditText.getId());
+
+        ingredientNameID.push(ingredientEditText.getId());
+        ingredientQuantityID.push(quantityEditText.getId());
     }
 
     private LinearLayout createLinear(){
