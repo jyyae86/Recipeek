@@ -27,9 +27,8 @@ public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientQuantityID= new Stack();
     Stack<Integer> stepID= new Stack();
     static int GlobalId =1;
-    String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
+    String done_error_message = "Your recipe must have a title, ingredients, cooking time , and at least one step";
     String done_error_title = "Error!";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
