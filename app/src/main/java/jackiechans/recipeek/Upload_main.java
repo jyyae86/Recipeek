@@ -27,7 +27,7 @@ public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientQuantityID= new Stack();
     Stack<Integer> stepID= new Stack();
     static int GlobalId =1;
-    String done_error_message = "Your recipe must have a title, ingredients, cooking time , and at least one step";
+    String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
     String done_error_title = "Error!";
 
     @Override
@@ -63,9 +63,9 @@ public class Upload_main extends AppCompatActivity {
                 stackquantity.push(content); //push to a new stack which holds quantity
             }
         }
-        if (title.isEmpty()||(stackquantity.size()!=stack.size())) {//if no title , cannot submit
+        if (title.isEmpty()) {//if no title , cannot submit
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
-            builder.setMessage(done_error_message)
+            builder.setMessage("There is no title")
                     .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
@@ -76,6 +76,34 @@ public class Upload_main extends AppCompatActivity {
                 ingredientNameID.push(nameBackUp.pop());
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
+        } else if(stack.size()==0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage("Please add ingredients")
+                    .setTitle(done_error_title)
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            stack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
+
+        }else if((stackquantity.size()!=stack.size())){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage("Missing one quantity or one ingredient name")
+                    .setTitle(done_error_title)
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            stack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
+
         } else {
             Spinner category = (Spinner)findViewById(R.id.category);
             String categoryString = category.getSelectedItem().toString();
@@ -104,17 +132,23 @@ public class Upload_main extends AppCompatActivity {
             Recipe myRecipe = new Recipe(title,ingredients);
             myRecipe.setSteps(steps);
             myRecipe.setCategory(categoryString);
-/*
+
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())
-                    .setTitle("Your recipe")
-                    .setPositiveButton(android.R.string.ok, null);
+                    .setTitle("Your recipe: "+myRecipe.title)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+
+                        }
+                    });
             AlertDialog dialog = builder.create();
             dialog.show();
-*/
+
+/*
             this.finish();
             Intent intent = new Intent(this, done.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
     public boolean hasContent(int id){ //this will check an ID has content or not
@@ -146,6 +180,7 @@ public class Upload_main extends AppCompatActivity {
             @Override
         public void onClick(DialogInterface dialog, int item) { //dummy dialog
                if (items[item].equals("Take Photo")) {
+                   cameraIntent();
         } else if (items[item].equals("Choose from Library")) {
         } else if (items[item].equals("Cancel")) {
             dialog.dismiss();

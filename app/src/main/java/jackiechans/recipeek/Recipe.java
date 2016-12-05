@@ -42,11 +42,20 @@ public class Recipe {
         this.steps=steps;
 
     }
+    public String getIngredientsString(){
+        String result="";
+        for(int i =0;i<ingredients.length ;i++){
+            result = result+ingredients[i].name +" with quantity of "+ingredients[i].quantity+"/ ";
+
+        }
+        return result;
+    }
+
     public void setCategory(String category){
         this.category=category;
     }
     public String toString(){
-        return "recipe name:"+title+" In this recipe, there are "+valueOf(ingredients.length) +"ingredients";
+        return "recipe name:"+title+", type: "+category+", In this recipe, ingredients are "+getIngredientsString();
     }
 
 
