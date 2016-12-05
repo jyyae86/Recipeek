@@ -21,6 +21,7 @@ import jackiechans.recipeek.Recipe;
 import static java.lang.String.valueOf;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
+
 public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientNameID= new Stack();
     Stack<Integer> ingredientQuantityID= new Stack();
@@ -28,6 +29,7 @@ public class Upload_main extends AppCompatActivity {
     static int GlobalId =1;
     String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
     String done_error_title = "Error!";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
