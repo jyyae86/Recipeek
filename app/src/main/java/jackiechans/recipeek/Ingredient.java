@@ -19,5 +19,8 @@ public class Ingredient {
         public String getQuantity(){
             return this.quantity;
         }
+        public String toString(){
+            return this.name+" with quantity of "+quantity;
+        }
     }
 
