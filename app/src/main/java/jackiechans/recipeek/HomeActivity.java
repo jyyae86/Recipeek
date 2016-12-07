@@ -100,4 +100,6 @@ public class HomeActivity extends AppCompatActivity
         //todo, make a parser, and figure out uploading data, querying it, then displaying it
 
     }
+
+
 }

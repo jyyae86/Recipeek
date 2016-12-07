@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".MyRecipe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,10 +20,9 @@
         <activity android:name=".done" />
         <activity android:name=".Update_addSteps" />
         <activity android:name=".Upload_main" />
-        <activity android:name=".MyRecipe" />
+        <activity android:name=".SignInActivity" />
         <activity android:name=".helpActivity" />
         <activity android:name=".FavouriteRecipe" />
-
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -32,13 +31,19 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="android.support.v7.app.AppCompatActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".SearchHome"></activity>
+        <activity android:name=".SearchHome" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
