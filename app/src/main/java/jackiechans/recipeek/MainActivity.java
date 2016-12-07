@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mReference;
     public static LinkedList<Recipe> AllRecipe=new LinkedList<Recipe>();
     public static LinkedList<Recipe> resultsRecipe = new LinkedList<Recipe>();
+    public static Recipe selectedRecipe;
 //    myRef.addValueEventListener(new ValueEventListener())
 
     @Override
