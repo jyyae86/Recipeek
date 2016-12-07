@@ -17,15 +17,19 @@ import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
     //created firebase database and reference to it
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
-    public static LinkedList<Recipe> AllRecipe = new LinkedList();
+    FirebaseDatabase mDatabase;
+    DatabaseReference mReference;
+    public static LinkedList<Recipe> AllRecipe=new LinkedList<Recipe>();
+    public static LinkedList<Recipe> resultsRecipe = new LinkedList<Recipe>();
 //    myRef.addValueEventListener(new ValueEventListener())
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Initialize firebase
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference("message");
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle("Home");
 
@@ -34,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //below are methods to navigate to new activites
+    protected void createSearchActivity(View view){
+        Intent intent = new Intent(this, SearchHome.class);
+        startActivity(intent);
+    }
+
+
     public void createSignInActivity(View view){
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
@@ -53,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void createMyRecipeActivity(View view){
         Intent intent = new Intent(this, MyRecipe.class);
         startActivity(intent);
+    }
+    public static void storeRecipeObject(Recipe a){
+        AllRecipe.add(a);
+
+
     }
 }
 //Jacky made comments
