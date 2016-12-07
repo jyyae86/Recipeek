@@ -73,6 +73,9 @@ public class Upload_main extends AppCompatActivity {
                 stackquantity.push(content); //push to a new stack which holds quantity
             }
         }
+        Spinner countrySP = (Spinner) findViewById(R.id.countrySp);
+        String country = countrySP.getSelectedItem().toString();
+
         if (title.isEmpty()) {//if no title , cannot submit
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage("There is no title")
@@ -113,6 +116,19 @@ public class Upload_main extends AppCompatActivity {
                 ingredientNameID.push(nameBackUp.pop());
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
+        }else if(country.equals("N/A")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage("Missing country name")
+                    .setTitle(done_error_title)
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            ingreStack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
 
         } else {// ********this step will start to create obeject
 
@@ -139,7 +155,7 @@ public class Upload_main extends AppCompatActivity {
 
             }
 
-            myRecipe = new Recipe(title,ingredientLinkedList,stepLinkedList,categoryString);
+            myRecipe = new Recipe(title,ingredientLinkedList,stepLinkedList,categoryString,country);
             /*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())
