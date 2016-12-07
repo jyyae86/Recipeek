@@ -1,43 +1,77 @@
 package jackiechans.recipeek;
 
+import java.io.Serializable;
+import java.util.LinkedList;
+
 import static java.lang.String.valueOf;
 
 /**
  * Junjie Chen, University Of Ottawa ,2016-12-04
  */
 
-public class Recipe {
+public class Recipe implements Serializable{
     //Creates a private
 
 
     //Instance variable
     public String title;
-    private String country;
-    public Ingredient[] ingredients;
-    public Step[] steps;
+    public String country;
+    public String category;
+    public LinkedList<Ingredient> ingredientList;
+    public LinkedList<String> stepList;
+
+
 
 
     //constructor
-    public Recipe(String title, Ingredient[] ingredients){
+    public Recipe(String title, LinkedList<Ingredient> ingredientList,LinkedList<String> stepLinkedList,String category,String county){
         this.title = title;
-        this.ingredients = ingredients;
+        this.ingredientList = ingredientList;
+        this.category=category;
+        this.stepList=stepLinkedList;
+        this.country=county;
+        }
+
+
+
+
+    public LinkedList<Ingredient> getIngredientList(){
+
+        return this.ingredientList;
     }
 
-    public Ingredient[] getIngredients(){
-        return this.ingredients;
-    }
-    public Step[] getSteps(){
-        return this.steps;
+    public LinkedList<String> getStepList(){
+        return this.stepList;
     }
 
     public String getTitle(){
+
         return this.title;
     }
-    public int ingredientsNum(){
-        return this.ingredients.length;
+
+    public int getIngredientsSum(){
+
+        return this.ingredientList.size();
+    }
+
+    public String getCategory(){
+
+        return this.category;
+    }
+    public String getCountry(){
+
+        return this.country;
+    }
+
+    public String getIngredientsString(){
+        String result="";
+        for(int i =0;i<ingredientList.size() ;i++){
+            result = result+ingredientList.get(i).name +" with quantity of "+ingredientList.get(i).quantity+"/ ";
+        }
+        return result;
     }
     public String toString(){
-        return "recipe name:"+this.title+" There are "+valueOf(ingredients.length) +"ingredients"+" and There are "+valueOf(steps.length) +"steps";
+        return "recipe name:"+title+", type: "+category+", In this recipe, ingredients are "+getIngredientsString();
     }
 
 

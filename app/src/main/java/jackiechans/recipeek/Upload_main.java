@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,86 +13,186 @@ import android.support.v7.app.AlertDialog;
 import android.content.*;
 import android.support.*;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.LinkedList;
 import java.util.Stack;
 
 import jackiechans.recipeek.Recipe;
+
+import static jackiechans.recipeek.MainActivity.storeRecipeObject;
+import static java.lang.String.valueOf;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
+
 public class Upload_main extends AppCompatActivity {
-    LinkedList<Integer> ingredientNameID= new LinkedList();
-    LinkedList<Integer> ingredientQuantityID= new LinkedList();
-    LinkedList<Integer> stepID= new LinkedList();
-
-
+    Stack<Integer> ingredientNameID= new Stack();
+    Stack<Integer> ingredientQuantityID= new Stack();
+    Stack<Integer> stepID= new Stack();
+    Recipe myRecipe;
+    static int GlobalId =1;
+    String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
+    String done_error_title = "Error!";
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_main);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference();
     }
 
     public void createActivityDone(View view) {
         // this will check no empty edit text before uploaded
         //get the results and store in a linkedList
-        Stack<Integer> stack = new Stack();
-        EditText titleEdit = (EditText) findViewById(R.id.titleEditText);
+        Stack<String> ingreStack = new Stack();
+        Stack<String> stackquantity = new Stack();
+        Stack<String> stepStack = new Stack();
+        Stack<Integer> nameBackUp = new Stack();
+        Stack<Integer> quantityBackUp = new Stack();
 
-        String title = titleEdit.getText().toString();
-        String done_error_message = "Your recipe must have title, ingredients, cooking time , and at least one step";
-        String done_error_title = "Error!";
+        String title = getStringById(R.id.titleEditText);
 
-        for(int i :ingredientNameID){
-            if (!hasContent(i)){
-                ingredientNameID.remove(ingredientNameID.indexOf(i));
-            }else{
-                stack.push(i);
+        while(!ingredientNameID.isEmpty()){
+            int temp = ingredientNameID.pop();
+            nameBackUp.push(temp);
+            if(hasContent(temp)){
+                String content =getStringById(temp);
+                ingreStack.push(content); //push to a new stack
             }
         }
-        Ingredient[] ingredients = new Ingredient[stack.size()];
-        int counter = 0;
-        while(!stack.isEmpty()){
-            EditText myEditext = (EditText)findViewById(stack.pop());
-            String content = myEditext.getText().toString();
-            Ingredient ingredient = new Ingredient(content,"DunnmyQuantity");
-            ingredients[counter]=ingredient;
+        while(!ingredientQuantityID.isEmpty()){
+            int temp = ingredientQuantityID.pop();
+            quantityBackUp.push(temp);
+            if(hasContent(temp)){
+                String content =getStringById(temp);
+                stackquantity.push(content); //push to a new stack which holds quantity
+            }
         }
+        Spinner countrySP = (Spinner) findViewById(R.id.countrySp);
+        String country = countrySP.getSelectedItem().toString();
 
-
-
-        if (title.isEmpty()) {//check content is not empty
+        if (title.isEmpty()) {//if no title , cannot submit
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
-            builder.setMessage(done_error_message)
+            builder.setMessage("There is no title")
                     .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-        } else {
-
-            //Recipe myRecipe = new Recipe(title,ingredients);
-
+            ingreStack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
+        } else if(ingreStack.size()==0){
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
-            builder.setMessage(myRecipe.toString())
-                    .setTitle("Your recipe")
+            builder.setMessage("Please add ingredients")
+                    .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
+            ingreStack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
 
+        }else if((stackquantity.size()!=ingreStack.size())){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage("Missing one quantity or one ingredient name")
+                    .setTitle(done_error_title)
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            ingreStack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
+        }else if(country.equals("N/A")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage("Missing country name")
+                    .setTitle(done_error_title)
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            ingreStack.clear();;
+            stackquantity.clear();
+            while(!nameBackUp.isEmpty()){
+                ingredientNameID.push(nameBackUp.pop());
+                ingredientQuantityID.push(quantityBackUp.pop());
+            }
+
+        } else {// ********this step will start to create obeject
+
+            Spinner category = (Spinner)findViewById(R.id.category);
+            String categoryString = category.getSelectedItem().toString();
+            LinkedList<Ingredient> ingredientLinkedList=new LinkedList();
+            LinkedList<String> stepLinkedList=new LinkedList();
+
+            while(!stepID.isEmpty()){
+                int temp = stepID.pop();
+                if (hasContent(temp)){
+                    stepStack.push(getStringById(temp));
+                }
+            }
+            while(!stepStack.isEmpty()){
+
+                stepLinkedList.add(stepStack.pop());
+            }
+
+
+            while(!ingreStack.isEmpty()){
+                Ingredient ingredient= new Ingredient(ingreStack.pop(),stackquantity.pop());
+                ingredientLinkedList.add(ingredient);
+
+            }
+
+            myRecipe = new Recipe(title,ingredientLinkedList,stepLinkedList,categoryString,country);
+            /*
+            AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
+            builder.setMessage(myRecipe.toString())
+                    .setTitle("Your recipe: "+myRecipe.title)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+*/
             //this.finish();
-            //Intent intent = new Intent(this, done.class);
-            //startActivity(intent);
+
+            mReference.child(myRecipe.getTitle()).setValue(myRecipe);
+            storeRecipeObject(myRecipe);
+            Intent intent = new Intent(this, done.class);
+
+
+            //intent.putExtra("myRecipe",myRecipe);
+            startActivity(intent);
         }
     }
     public boolean hasContent(int id){ //this will check an ID has content or not
-
-        EditText editText = (EditText) findViewById(id);
-        String content = editText.getText().toString();
+        String content = getStringById(id);
         if(content.isEmpty()){
             return false;
         }else{
             return true;
         }
+    }
 
+    public String getStringById(int id){
+        EditText my = (EditText)findViewById(id);
+        return my.getText().toString();
     }
 
     public void backToMain(View view){
@@ -109,6 +210,7 @@ public class Upload_main extends AppCompatActivity {
             @Override
         public void onClick(DialogInterface dialog, int item) { //dummy dialog
                if (items[item].equals("Take Photo")) {
+                   cameraIntent();
         } else if (items[item].equals("Choose from Library")) {
         } else if (items[item].equals("Cancel")) {
             dialog.dismiss();
@@ -129,12 +231,17 @@ public class Upload_main extends AppCompatActivity {
         mLayout.addView(linearLayout);
         EditText ingredientEditText = createNewEditText();
         EditText quantityEditText = createNewEditText();
+        ingredientEditText.setId(+GlobalId);
+        GlobalId++;
+        quantityEditText.setId((+GlobalId));
+        GlobalId++;
         ingredientEditText.setHint("Add ingredient");
-        quantityEditText.setHint("Quantity");
+        quantityEditText.setHint("Add quantity");
         linearLayout.addView(ingredientEditText);
         linearLayout.addView(quantityEditText);
-        ingredientNameID.add(ingredientEditText.getId());
-        ingredientQuantityID.add(quantityEditText.getId());
+
+        ingredientNameID.push(ingredientEditText.getId());
+        ingredientQuantityID.push(quantityEditText.getId());
     }
 
     private LinearLayout createLinear(){
@@ -150,13 +257,14 @@ public class Upload_main extends AppCompatActivity {
         newtext.setLayoutParams(lparams);
         newtext.setWidth(350);
         newtext.setMinimumHeight(50);
+        newtext.setInputType(InputType.TYPE_CLASS_TEXT);
         return newtext;
     }
     public void moreStep(View view){ //OnClick , Add more steps
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.steps_container);
         EditText stepEditText =createNewStepEditText();
         mLayout.addView(stepEditText);
-        stepID.add(stepEditText.getId());
+        stepID.push(stepEditText.getId());
     }
     private EditText createNewStepEditText() { //this will creat step editText
         // this will create Edit Text dynamically
@@ -166,6 +274,9 @@ public class Upload_main extends AppCompatActivity {
         newtext.setWidth(700);
         newtext.setMinimumHeight(50);
         newtext.setHint("Add Step");
+        newtext.setId(+GlobalId);
+        GlobalId++;
+
         return newtext;
     }
     /*

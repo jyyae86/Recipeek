@@ -27,18 +27,37 @@ public class SearchHome extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
         searchBox =  (EditText) findViewById(R.id.ingredientBox);
-        searchCountry = (EditText) findViewById(R.id.countryBox);
+        //searchCountry = (EditText) findViewById(R.id.countryBox);
         foodType = (Spinner) findViewById(R.id.categorySelect);
     }
 
     public void search(){
         Query test = mReference.endAt("pizza");
-
         AlertDialog.Builder builder = new AlertDialog.Builder(SearchHome.this);
         builder.setMessage(test.toString())
                 .setTitle("Attention")
                 .setPositiveButton(android.R.string.ok, null);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public String getBoolean(){
+        // this will return "or" or "and "
+        Spinner Selecter = (Spinner)findViewById(R.id.booleanSelect);
+        String a =Selecter.getContext().toString();
+        return a;
+    }
+
+    public String getFirstIngredient(){
+        //return the string value in the first box
+        EditText editText=(EditText)findViewById(R.id.ingredientBox);
+        String s = editText.toString();
+        return s;
+    }
+    public String getSecondIngredient(){
+        //return the string value in the first box
+        EditText editText=(EditText)findViewById(R.id.ingredientBox2);
+        String s = editText.toString();
+        return s;
     }
 }
