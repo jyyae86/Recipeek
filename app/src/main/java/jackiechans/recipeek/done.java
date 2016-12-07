@@ -11,7 +11,13 @@ public class done extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
-    }
+        /*Tesing for passing object
+        Recipe aRecipe;
+        Bundle bundle = this.getIntent().getExtras();
+        aRecipe = (Recipe) bundle.getSerializable("myRecipe");
+        this.recipe=aRecipe;*/
+        }
+
 
     public void returnToMainActivity(View view){
         Intent intent = new Intent(this, MainActivity.class);

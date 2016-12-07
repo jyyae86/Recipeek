@@ -26,6 +26,7 @@ public class Upload_main extends AppCompatActivity {
     Stack<Integer> ingredientNameID= new Stack();
     Stack<Integer> ingredientQuantityID= new Stack();
     Stack<Integer> stepID= new Stack();
+    Recipe myRecipe;
     static int GlobalId =1;
     String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
     String done_error_title = "Error!";
@@ -39,7 +40,7 @@ public class Upload_main extends AppCompatActivity {
     public void createActivityDone(View view) {
         // this will check no empty edit text before uploaded
         //get the results and store in a linkedList
-        Stack<String> stack = new Stack();
+        Stack<String> ingreStack = new Stack();
         Stack<String> stackquantity = new Stack();
         Stack<String> stepStack = new Stack();
         Stack<Integer> nameBackUp = new Stack();
@@ -52,7 +53,7 @@ public class Upload_main extends AppCompatActivity {
             nameBackUp.push(temp);
             if(hasContent(temp)){
                 String content =getStringById(temp);
-                stack.push(content); //push to a new stack
+                ingreStack.push(content); //push to a new stack
             }
         }
         while(!ingredientQuantityID.isEmpty()){
@@ -70,69 +71,67 @@ public class Upload_main extends AppCompatActivity {
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            stack.clear();;
+            ingreStack.clear();;
             stackquantity.clear();
             while(!nameBackUp.isEmpty()){
                 ingredientNameID.push(nameBackUp.pop());
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
-        } else if(stack.size()==0){
+        } else if(ingreStack.size()==0){
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage("Please add ingredients")
                     .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            stack.clear();;
+            ingreStack.clear();;
             stackquantity.clear();
             while(!nameBackUp.isEmpty()){
                 ingredientNameID.push(nameBackUp.pop());
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
 
-        }else if((stackquantity.size()!=stack.size())){
+        }else if((stackquantity.size()!=ingreStack.size())){
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage("Missing one quantity or one ingredient name")
                     .setTitle(done_error_title)
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            stack.clear();;
+            ingreStack.clear();;
             stackquantity.clear();
             while(!nameBackUp.isEmpty()){
                 ingredientNameID.push(nameBackUp.pop());
                 ingredientQuantityID.push(quantityBackUp.pop());
             }
 
-        } else {
+        } else {// ********this step will start to create obeject
+
             Spinner category = (Spinner)findViewById(R.id.category);
             String categoryString = category.getSelectedItem().toString();
+            LinkedList<Ingredient> ingredientLinkedList=new LinkedList();
+            LinkedList<String> stepLinkedList=new LinkedList();
+
             while(!stepID.isEmpty()){
                 int temp = stepID.pop();
                 if (hasContent(temp)){
                     stepStack.push(getStringById(temp));
                 }
             }
-            Step[] steps = new Step[stepStack.size()];
-            int j =0;
             while(!stepStack.isEmpty()){
-                steps[j]=new Step(stepStack.pop());
-                j++;
+
+                stepLinkedList.add(stepStack.pop());
             }
 
 
-            Ingredient[] ingredients = new Ingredient[stack.size()];
-            int i=0;
-            while(!stack.isEmpty()){
-                ingredients[i]= new Ingredient(stack.pop(),stackquantity.pop());
-                i++;
+            while(!ingreStack.isEmpty()){
+                Ingredient ingredient= new Ingredient(ingreStack.pop(),stackquantity.pop());
+                ingredientLinkedList.add(ingredient);
 
             }
 
-            Recipe myRecipe = new Recipe(title,ingredients);
-            myRecipe.setSteps(steps);
-            myRecipe.setCategory(categoryString);
-
+            myRecipe = new Recipe(title,ingredientLinkedList,stepLinkedList,categoryString);
+            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())
                     .setTitle("Your recipe: "+myRecipe.title)
@@ -145,10 +144,12 @@ public class Upload_main extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-/*
-            this.finish();
+*/
+            //this.finish();
             Intent intent = new Intent(this, done.class);
-            startActivity(intent);*/
+
+            //intent.putExtra("myRecipe",myRecipe);
+            startActivity(intent);
         }
     }
     public boolean hasContent(int id){ //this will check an ID has content or not

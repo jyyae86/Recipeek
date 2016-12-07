@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     //created firebase database and reference to it
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
-
 //    myRef.addValueEventListener(new ValueEventListener())
 
     @Override
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle("Home");
+
 
 
     }
