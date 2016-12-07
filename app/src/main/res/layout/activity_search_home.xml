@@ -42,12 +42,12 @@
             android:inputType="textPersonName"
             android:hint="Your ingredients"
             android:ems="10"
-            android:id="@+id/ingredientBox" />
+            android:id="@+id/ingredientBox1" />
 
         <Spinner
             android:layout_width="107dp"
             android:layout_height="wrap_content"
-            android:entries="@array/recipe_category"
+            android:entries="@array/boolean_operators"
             android:id="@+id/booleanSelect" />
 
         <EditText
@@ -61,14 +61,21 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/recipe_category"
-            android:id="@+id/categorySelect" />
+            android:entries="@array/food_type"
+            android:id="@+id/recipeCountry" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recipeCategory"
+            android:entries="@+array/recipe_category"/>
 
         <Button
             android:text="Let's get Cooking!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/activateSearch" />
+            android:id="@+id/activateSearch"
+            android:onClick="search"/>
 
     </LinearLayout>
 </RelativeLayout>

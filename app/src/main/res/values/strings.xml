@@ -31,4 +31,11 @@
         <item>African</item>
         <item>Others</item>
     </string-array>
+
+    <string-array name="boolean_operators">
+        <item>N/A</item>
+        <item>And</item>
+        <item>Or</item>
+        <item>Not</item>
+    </string-array>
 </resources>
