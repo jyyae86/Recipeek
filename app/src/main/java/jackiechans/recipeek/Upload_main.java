@@ -13,11 +13,15 @@ import android.support.v7.app.AlertDialog;
 import android.content.*;
 import android.support.*;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.LinkedList;
 import java.util.Stack;
 
 import jackiechans.recipeek.Recipe;
 
+import static jackiechans.recipeek.MainActivity.storeRecipeObject;
 import static java.lang.String.valueOf;
 //Junjie Chen, University of Ottawa ,2016-12-04
 
@@ -30,11 +34,16 @@ public class Upload_main extends AppCompatActivity {
     static int GlobalId =1;
     String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
     String done_error_title = "Error!";
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_main);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference();
     }
 
     public void createActivityDone(View view) {
@@ -146,7 +155,11 @@ public class Upload_main extends AppCompatActivity {
 
 */
             //this.finish();
+
+            mReference.child(myRecipe.getTitle()).setValue(myRecipe);
+            storeRecipeObject(myRecipe);
             Intent intent = new Intent(this, done.class);
+
 
             //intent.putExtra("myRecipe",myRecipe);
             startActivity(intent);

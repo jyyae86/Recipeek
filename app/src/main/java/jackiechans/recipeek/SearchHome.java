@@ -27,13 +27,12 @@ public class SearchHome extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
         searchBox =  (EditText) findViewById(R.id.ingredientBox);
-        searchCountry = (EditText) findViewById(R.id.countryBox);
+        //searchCountry = (EditText) findViewById(R.id.countryBox);
         foodType = (Spinner) findViewById(R.id.categorySelect);
     }
 
     public void search(){
         Query test = mReference.endAt("pizza");
-
         AlertDialog.Builder builder = new AlertDialog.Builder(SearchHome.this);
         builder.setMessage(test.toString())
                 .setTitle("Attention")

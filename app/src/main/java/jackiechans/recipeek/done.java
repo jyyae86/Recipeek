@@ -17,6 +17,9 @@ public class done extends AppCompatActivity {
         aRecipe = (Recipe) bundle.getSerializable("myRecipe");
         this.recipe=aRecipe;*/
         }
+    public static void hello(){
+
+    }
 
 
     public void returnToMainActivity(View view){

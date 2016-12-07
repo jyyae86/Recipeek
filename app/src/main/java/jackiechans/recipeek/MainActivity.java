@@ -9,6 +9,8 @@ import android.view.View;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.LinkedList;
+
 /**
  * This is the outdated homepage, check HomeActivity for the new homepage
  */
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     //created firebase database and reference to it
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
+    public static LinkedList<Recipe> AllRecipe =new LinkedList();
 //    myRef.addValueEventListener(new ValueEventListener())
 
     @Override
@@ -50,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
     public void createMyRecipeActivity(View view){
         Intent intent = new Intent(this, MyRecipe.class);
         startActivity(intent);
+    }
+    public static void storeRecipeObject(Recipe a){
+        AllRecipe.add(a);
+
+
     }
 }
 //Jacky made comments
