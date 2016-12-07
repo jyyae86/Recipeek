@@ -32,7 +32,8 @@
         android:text="Search"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:id="@+id/button9" />
+        android:id="@+id/button9"
+        android:onClick="createSearchActivity"/>
 
     <Button
         android:text="Add Recipe"

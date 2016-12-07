@@ -2,20 +2,27 @@ package jackiechans.recipeek;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
+import static jackiechans.recipeek.R.id.booleanSelect;
+import static jackiechans.recipeek.R.id.ingredientBox;
+import static jackiechans.recipeek.R.id.ingredientBox1;
+import static jackiechans.recipeek.R.id.ingredientBox2;
+import static jackiechans.recipeek.R.id.recipeCategory;
+import static jackiechans.recipeek.R.id.recipeCountry;
 
 public class SearchHome extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
-    private EditText searchBox;
-    private EditText searchCountry;
+    private EditText firstIngred;
+    private EditText secondIngred;
+    private Spinner boolOp;
+    private Spinner country;
     private Spinner foodType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +33,21 @@ public class SearchHome extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
-        searchBox =  (EditText) findViewById(R.id.ingredientBox);
-        //searchCountry = (EditText) findViewById(R.id.countryBox);
-        foodType = (Spinner) findViewById(R.id.categorySelect);
+        firstIngred = (EditText)findViewById(ingredientBox1);
+        secondIngred = (EditText)findViewById(ingredientBox2);
+        boolOp = (Spinner)findViewById(booleanSelect);
+        country = (Spinner)findViewById(recipeCountry);
+        foodType = (Spinner)findViewById(recipeCategory);
     }
 
     public void search(){
-        Query test = mReference.endAt("pizza");
-        AlertDialog.Builder builder = new AlertDialog.Builder(SearchHome.this);
-        builder.setMessage(test.toString())
-                .setTitle("Attention")
-                .setPositiveButton(android.R.string.ok, null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        String[] searchParams = new String[5];
+        searchParams[0] = firstIngred.getText().toString();
+        searchParams[1] = secondIngred.getText().toString();
+        searchParams[2] = boolOp.getSelectedItem().toString();
+        searchParams[3] = country.getSelectedItem().toString();
+        searchParams[4] = foodType.getSelectedItem().toString();
+        doMySearch(searchParams);
     }
 
     public String getBoolean(){
@@ -50,7 +59,7 @@ public class SearchHome extends AppCompatActivity {
 
     public String getFirstIngredient(){
         //return the string value in the first box
-        EditText editText=(EditText)findViewById(R.id.ingredientBox);
+        EditText editText=(EditText)findViewById(ingredientBox);
         String s = editText.toString();
         return s;
     }
@@ -60,4 +69,9 @@ public class SearchHome extends AppCompatActivity {
         String s = editText.toString();
         return s;
     }
+
+    protected void doMySearch(String[] searchParams){
+
+    }
+
 }
