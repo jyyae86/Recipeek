@@ -1,5 +1,9 @@
 package jackiechans.recipeek;
 
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+
 /**
  * Created by Rawaz on 2016-12-04.
  */
@@ -10,6 +14,14 @@ public class RecipeContainer{
     private static RecipeNode first;
     private static RecipeNode last;
     private static int size;
+
+    public RecipeNode getFirst(){
+        return first;
+    }
+
+    public RecipeNode getLast(){
+        return last;
+    }
 
     public int getSize(){
         return size;
@@ -85,4 +97,5 @@ public class RecipeContainer{
             next = newNode;
         }
     }
+
 }
