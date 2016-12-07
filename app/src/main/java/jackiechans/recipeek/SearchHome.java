@@ -41,4 +41,24 @@ public class SearchHome extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    public String getBoolean(){
+        // this will return "or" or "and "
+        Spinner Selecter = (Spinner)findViewById(R.id.booleanSelect);
+        String a =Selecter.getContext().toString();
+        return a;
+    }
+
+    public String getFirstIngredient(){
+        //return the string value in the first box
+        EditText editText=(EditText)findViewById(R.id.ingredientBox);
+        String s = editText.toString();
+        return s;
+    }
+    public String getSecondIngredient(){
+        //return the string value in the first box
+        EditText editText=(EditText)findViewById(R.id.ingredientBox2);
+        String s = editText.toString();
+        return s;
+    }
 }

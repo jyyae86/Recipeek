@@ -15,7 +15,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/searchLayout">
+        android:id="@+id/searchLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
         <TextView
             android:text="So, what are you in the mood for?"
@@ -27,6 +31,11 @@
             android:textColor="#000000"
             android:onClick="search"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.43" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,13 +44,19 @@
             android:ems="10"
             android:id="@+id/ingredientBox" />
 
+        <Spinner
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/recipe_category"
+            android:id="@+id/booleanSelect" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Desired Nationality"
             android:ems="10"
-            android:id="@+id/countryBox" />
+            android:id="@+id/ingredientBox2"
+            android:hint="Your ingredient" />
 
         <Spinner
             android:layout_width="match_parent"
