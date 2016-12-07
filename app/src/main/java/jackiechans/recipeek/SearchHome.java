@@ -9,8 +9,10 @@ import android.widget.Spinner;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.LinkedList;
+
+import static jackiechans.recipeek.MainActivity.AllRecipe;
 import static jackiechans.recipeek.R.id.booleanSelect;
-import static jackiechans.recipeek.R.id.ingredientBox;
 import static jackiechans.recipeek.R.id.ingredientBox1;
 import static jackiechans.recipeek.R.id.ingredientBox2;
 import static jackiechans.recipeek.R.id.recipeCategory;
@@ -47,7 +49,7 @@ public class SearchHome extends AppCompatActivity {
         searchParams[2] = boolOp.getSelectedItem().toString();
         searchParams[3] = country.getSelectedItem().toString();
         searchParams[4] = foodType.getSelectedItem().toString();
-        doMySearch(searchParams);
+        searchFirstParam(searchParams);
     }
 
     public String getBoolean(){
@@ -59,7 +61,7 @@ public class SearchHome extends AppCompatActivity {
 
     public String getFirstIngredient(){
         //return the string value in the first box
-        EditText editText=(EditText)findViewById(ingredientBox);
+        EditText editText=(EditText)findViewById(ingredientBox1);
         String s = editText.toString();
         return s;
     }
@@ -70,8 +72,17 @@ public class SearchHome extends AppCompatActivity {
         return s;
     }
 
-    protected void doMySearch(String[] searchParams){
-
+    protected void searchFirstParam(String[] searchParams){
+        //Loop through all of the recipes and on each recipe, loop through the ingredients and add the recipe to the results linkedlist if
+        LinkedList<Recipe> result = new LinkedList<Recipe>();
+        for(int i = 0; i < AllRecipe.size(); i++){
+            Recipe temp = MainActivity.AllRecipe.get(i);
+            for(int j = 0; j < temp.getIngredientList().size(); j++){
+                if(temp.getIngredientList().get(j).getName().equals(searchParams[0])){
+                    result.add(temp);
+                }
+            }
+        }
     }
 
 }

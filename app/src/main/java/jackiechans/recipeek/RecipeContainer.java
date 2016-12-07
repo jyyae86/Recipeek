@@ -1,5 +1,9 @@
 package jackiechans.recipeek;
 
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+
 /**
  * Created by Rawaz on 2016-12-04.
  */
@@ -93,4 +97,5 @@ public class RecipeContainer{
             next = newNode;
         }
     }
+
 }
