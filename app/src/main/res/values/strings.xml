@@ -25,5 +25,10 @@
         <item>Chinese</item>
         <item>Colombian</item>
         <item>Brazilian</item>
+        <item>Indian</item>
+        <item>Japanese</item>
+        <item>Russian</item>
+        <item>African</item>
+        <item>Others</item>
     </string-array>
 </resources>

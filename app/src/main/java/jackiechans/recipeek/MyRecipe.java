@@ -17,7 +17,7 @@ public class MyRecipe extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
-        setContent();
+        //setContent();
 
         /* Testing receive object
         Recipe aR;
@@ -26,15 +26,9 @@ public class MyRecipe extends AppCompatActivity{
         recipe=aR;*/
 
     }
-    public void setContent(){
-        TextView tv = (TextView)findViewById(R.id.recipe_name);
-        if(AllRecipe.size()!=0) {
-            Recipe a = AllRecipe.getFirst();
-            String title = a.getTitle();
-            tv.setText(title);
-        }
 
 
-    }
+
+
 
 }

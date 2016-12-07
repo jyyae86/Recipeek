@@ -24,11 +24,12 @@ public class Recipe implements Serializable{
 
 
     //constructor
-    public Recipe(String title, LinkedList<Ingredient> ingredientList,LinkedList<String> stepLinkedList,String category){
+    public Recipe(String title, LinkedList<Ingredient> ingredientList,LinkedList<String> stepLinkedList,String category,String county){
         this.title = title;
         this.ingredientList = ingredientList;
         this.category=category;
         this.stepList=stepLinkedList;
+        this.country=county;
         }
 
 
@@ -53,9 +54,13 @@ public class Recipe implements Serializable{
         return this.ingredientList.size();
     }
 
-    public String getCategory(String category){
+    public String getCategory(){
 
         return this.category;
+    }
+    public String getCountry(){
+
+        return this.country;
     }
 
     public String getIngredientsString(){

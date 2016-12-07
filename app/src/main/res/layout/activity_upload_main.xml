@@ -154,8 +154,11 @@
                         <Spinner
                             android:layout_width="155dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/type"
-                            android:layout_weight="0.09" />
+                            android:id="@+id/countrySp"
+                            android:layout_weight="0.09"
+                            android:entries="@array/food_type"
+
+                        />
                     </LinearLayout>
 
                     <LinearLayout
