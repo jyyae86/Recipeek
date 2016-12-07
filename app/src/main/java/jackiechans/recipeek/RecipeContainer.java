@@ -11,6 +11,14 @@ public class RecipeContainer{
     private static RecipeNode last;
     private static int size;
 
+    public RecipeNode getFirst(){
+        return first;
+    }
+
+    public RecipeNode getLast(){
+        return last;
+    }
+
     public int getSize(){
         return size;
     }
