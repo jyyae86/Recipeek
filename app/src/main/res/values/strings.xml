@@ -17,7 +17,7 @@
         <item>Drink</item>
         <item>Sauce</item>
     </string-array>
-    
+
     <string-array name="food_type">
         <item>N/A</item>
         <item>Italian</item>
