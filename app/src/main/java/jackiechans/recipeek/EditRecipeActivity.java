@@ -33,7 +33,6 @@ public class EditRecipeActivity extends AppCompatActivity {
     Stack<Integer> stepID= new Stack();
     Recipe myRecipe;
     static int GlobalId =1;
-    String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
     String done_error_title = "Error!";
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
@@ -41,7 +40,7 @@ public class EditRecipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_main);
+        setContentView(R.layout.activity_edit_recipe);
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
         int index = 0;
@@ -259,7 +258,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         startActivityForResult(intent,0);
     }
 
-    public void MoreIngredient(View view){ //OnClick to add more ingredients
+    public void MoreIngredient(){ //OnClick to add more ingredients
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
         LinearLayout linearLayout = createLinear();
         mLayout.addView(linearLayout);
@@ -294,7 +293,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         newtext.setInputType(InputType.TYPE_CLASS_TEXT);
         return newtext;
     }
-    public void moreStep(View view){ //OnClick , Add more steps
+    public void moreStep(){ //OnClick , Add more steps
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.steps_container);
         EditText stepEditText =createNewStepEditText();
         mLayout.addView(stepEditText);

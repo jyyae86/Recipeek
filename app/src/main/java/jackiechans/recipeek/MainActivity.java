@@ -106,5 +106,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     //END MENU CREATION
+
+
 }
 //Jacky made comments
