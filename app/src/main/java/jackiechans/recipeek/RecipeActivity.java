@@ -52,8 +52,12 @@ public class RecipeActivity extends AppCompatActivity {
     private void printInstructions(){
         TextView tv = (TextView) findViewById(R.id.textInstructions);
         tv.setText("");
-        for (Integer i = 1 ; i < instructions.size()+1; i++){
-            tv.append(i.toString() + ". " +instructions.get(i) +" \n\n");
+
+        int stepNum = 0;
+
+        for (int i = 0; i < instructions.size(); i++){
+            stepNum = i +1;
+            tv.append(i + ". " +instructions.get(i) +" \n\n");
         }
 
     }
