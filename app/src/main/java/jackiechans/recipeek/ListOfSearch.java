@@ -60,10 +60,9 @@ public class ListOfSearch extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent,View v, int position, long id){
                 MainActivity.selectedRecipe = (Recipe) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), Recipe.class);
+                Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
                 startActivity(intent);
             }
         });
     }
-
 }

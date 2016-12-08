@@ -16,18 +16,13 @@
         tools:context=".MainActivity" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/favouriteText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:gravity="center"
             android:textStyle="bold"
-            android:text="Your Favourite Recipes:" />
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </ListView>
+            android:text="The programming chefs down at JackieChans headquarters haven't finished cooking up a favourite section. Stay tuned for when this feature will be available!" />
 
     </LinearLayout>
 

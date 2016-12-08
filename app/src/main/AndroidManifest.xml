@@ -20,7 +20,11 @@
         <activity android:name=".done" />
         <activity android:name=".Update_addSteps" />
         <activity android:name=".Upload_main" />
-        <activity android:name=".MyRecipe" />
+        <activity android:name=".RecipeActivity"/>
+        <activity android:name=".ListOfSearch"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".EditRecipeActivity"/>
+        <activity android:name=".MyRecipes" />
         <activity android:name=".helpActivity" />
         <activity android:name=".FavouriteRecipe" />
 

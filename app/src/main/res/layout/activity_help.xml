@@ -141,7 +141,7 @@
                 android:onClick="onClickFocusText" />
 
             <TextView
-                android:text="•To search for a recipe, you'll see a search box with &quot;Discover!&quot; written inside of it. Press the box, and start tryping in your ingredients. From there, press the magnifying glass to search. From htere, your results will be displayed as a vertical list. Just press on a recipe to open it and view it's details."
+                android:text="•To search for a recipe, you'll see a search box with &quot;Search&quot; written inside of it. Press the box, and start typing in your ingredients. From there, press the &quot;Let's get Cooking!&quot; button to search. You'll be taken to a page containing your results. Just press on a recipe to open it and view it's details."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
@@ -192,7 +192,7 @@
                 android:onClick="onClickFocusText" />
 
             <TextView
-                android:text="•To add a recipe, press &quot;Teach!&quot; on the main Recipeek page. From there, you will be taken to the recipe creation page. You'll have to add a title, a thumbnail picture for the final result of the recipe, the ingredients needed and their quantity and the steps needed.\n"
+                android:text="•To add a recipe, press &quot;add recipe&quot; on the main Recipeek page. From there, you will be taken to the recipe creation page. You'll have to add a title, a thumbnail picture for the final result of the recipe, the ingredients needed and their quantity and the steps needed.\n"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"

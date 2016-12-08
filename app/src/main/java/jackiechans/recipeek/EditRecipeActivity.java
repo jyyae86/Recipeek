@@ -22,6 +22,7 @@ import java.util.Stack;
 import jackiechans.recipeek.Recipe;
 
 import static jackiechans.recipeek.MainActivity.AllRecipe;
+import static jackiechans.recipeek.MainActivity.selectedRecipe;
 import static jackiechans.recipeek.MainActivity.storeRecipeObject;
 import static java.lang.String.valueOf;
 //Junjie Chen, University of Ottawa ,2016-12-04
@@ -189,6 +190,7 @@ public class EditRecipeActivity extends AppCompatActivity {
             }
 
             myRecipe = new Recipe(title,ingredientLinkedList,stepLinkedList,categoryString,country);
+            AllRecipe.set(AllRecipe.indexOf(selectedRecipe),myRecipe);
             /*
             AlertDialog.Builder builder = new AlertDialog.Builder(Upload_main.this);
             builder.setMessage(myRecipe.toString())
@@ -206,7 +208,7 @@ public class EditRecipeActivity extends AppCompatActivity {
             //this.finish();
 
             mReference.child(myRecipe.getTitle()).setValue(myRecipe);
-            storeRecipeObject(myRecipe);
+            //storeRecipeObject(myRecipe);
             Intent intent = new Intent(this, done.class);
 
 
@@ -258,7 +260,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         startActivityForResult(intent,0);
     }
 
-    public void MoreIngredient(){ //OnClick to add more ingredients
+    public void MoreIngredient(View view){ //OnClick to add more ingredients
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
         LinearLayout linearLayout = createLinear();
         mLayout.addView(linearLayout);
@@ -293,7 +295,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         newtext.setInputType(InputType.TYPE_CLASS_TEXT);
         return newtext;
     }
-    public void moreStep(){ //OnClick , Add more steps
+    public void moreStep(View view){ //OnClick , Add more steps
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.steps_container);
         EditText stepEditText =createNewStepEditText();
         mLayout.addView(stepEditText);
@@ -312,6 +314,7 @@ public class EditRecipeActivity extends AppCompatActivity {
 
         return newtext;
     }
+
     /*
     private void galleryIntent() // this will open the gallery
     {
