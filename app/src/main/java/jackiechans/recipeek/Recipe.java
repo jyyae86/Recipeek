@@ -14,11 +14,11 @@ public class Recipe implements Serializable{
 
 
     //Instance variable
-    public String title;
-    public String country;
-    public String category;
-    public LinkedList<Ingredient> ingredientList;
-    public LinkedList<String> stepList;
+    private String title;
+    private String country;
+    private String category;
+    private LinkedList<Ingredient> ingredientList;
+    private LinkedList<String> stepList;
 
 
 
