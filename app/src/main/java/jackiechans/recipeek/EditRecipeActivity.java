@@ -33,7 +33,6 @@ public class EditRecipeActivity extends AppCompatActivity {
     Stack<Integer> stepID= new Stack();
     Recipe myRecipe;
     static int GlobalId =1;
-    String done_error_message = "Your recipe must have a title, cooking time , and at least one step";
     String done_error_title = "Error!";
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
@@ -41,7 +40,7 @@ public class EditRecipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_main);
+        setContentView(R.layout.activity_edit_recipe);
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
         int index = 0;
