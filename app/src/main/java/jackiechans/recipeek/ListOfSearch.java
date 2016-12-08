@@ -66,8 +66,4 @@ public class ListOfSearch extends AppCompatActivity {
         });
     }
 
-    public void onClick(){
-        Intent intent = new Intent(this, Recipe.class);
-    }
-
 }
