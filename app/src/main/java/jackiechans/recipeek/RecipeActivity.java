@@ -84,6 +84,7 @@ public class RecipeActivity extends AppCompatActivity {
         tv.setText(category);
     }
 
+    //access edit recipee class
     public void editRecipe(){
         Intent intent=new Intent(this, EditRecipeActivity.class);
         startActivity(intent);
