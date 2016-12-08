@@ -106,5 +106,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     //END MENU CREATION
+
+    public void EditText(){
+        Intent intent = new Intent(this, EditRecipeActivity.class);
+        startActivity(intent);
+
+    }
 }
 //Jacky made comments
