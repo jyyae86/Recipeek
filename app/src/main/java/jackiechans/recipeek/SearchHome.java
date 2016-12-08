@@ -82,10 +82,8 @@ public class SearchHome extends AppCompatActivity {
         LinkedList<Recipe> result = new LinkedList<Recipe>();
         for(int i = 0; i < recipes.size(); i++){
             Recipe temp = recipes.get(i);
-            Boolean added = false;
             for(int j = 0; j < temp.getIngredientList().size(); j++){
-                if(temp.getIngredientList().get(j).getName().equals(param) && !added){
-                    added = true;
+                if(temp.getIngredientList().get(j).getName().equals(param) && !isAdded(temp, result)){
                     result.add(temp);
                 }
             }
@@ -117,8 +115,8 @@ public class SearchHome extends AppCompatActivity {
                 for(int i = 0; i < list.size(); i++){
                     Recipe temp = list.get(i);
                     for(int j = 0; j < temp.getIngredientList().size(); j++){
-                        if(temp.getIngredientList().get(j).getName().equals(ingred)){
-                            list.remove(i);
+                                if(temp.getIngredientList().get(j).getName().equals(ingred)){
+                                    list.remove(i);
                         }
                     }
                 }
@@ -136,10 +134,8 @@ public class SearchHome extends AppCompatActivity {
             //loop through all the recipes in list and find all of them that include the country
             for(int i = 0; i < list.size(); i++){
                 Recipe tempRecipe = list.get(i);
-                Boolean added = false;
-                if(tempRecipe.getCountry().equals(searchParam[3]) && !added){
+                if(tempRecipe.getCountry().equals(searchParam[3]) && !isAdded(tempRecipe, tempList)){
                     tempList.add(tempRecipe);
-                    added = true;
                 }
             }
         }
@@ -152,12 +148,10 @@ public class SearchHome extends AppCompatActivity {
             tempList = list;
         }else{
             //loop through all the recipes in list and find all of them that include the country
-            Boolean added = false;
             for(int i = 0; i < list.size(); i++) {
                 Recipe tempRecipe = list.get(i);
-                if (tempRecipe.getCategory().equals(searchParam[4]) && !added) {
+                if (tempRecipe.getCategory().equals(searchParam[4]) && !isAdded(tempRecipe, tempList)) {
                     tempList.add(tempRecipe);
-                    added = true;
                 }
             }
         }
@@ -172,7 +166,19 @@ public class SearchHome extends AppCompatActivity {
         }
 
         for(int i = 0; i < l2.size(); i++){
-            result.add(l2.get(i));
+            if(!isAdded(l2.get(i), result)) {
+                result.add(l2.get(i));
+            }
+        }
+        return result;
+    }
+
+    protected boolean isAdded(Recipe recipe, LinkedList<Recipe> list){
+        Boolean result = false;
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).equals(recipe)){
+                result = true;
+            }
         }
         return result;
     }
