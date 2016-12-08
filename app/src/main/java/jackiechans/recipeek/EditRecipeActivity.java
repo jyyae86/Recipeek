@@ -25,7 +25,8 @@ public class EditRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_recipe);
         int index=0;
-        Recipe recipe = AllRecipe.get(index) ;
+        Recipe recipe = AllRecipe.get(index);
+
     }
 
 
