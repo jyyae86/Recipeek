@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/activateSearch"
-            android:onClick="search"/>
+            android:onClick="searchMyFuckingApp"/>
 
     </LinearLayout>
 </RelativeLayout>
