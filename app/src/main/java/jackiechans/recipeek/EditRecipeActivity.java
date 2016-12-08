@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 
 import java.util.LinkedList;
 
+import static jackiechans.recipeek.MainActivity.AllRecipe;
+
 public class EditRecipeActivity extends AppCompatActivity {
     static int GlobalId=1;
     LinkedList stepID;
@@ -22,8 +24,8 @@ public class EditRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_recipe);
-        int index;
-        Allrecipe;
+        int index=0;
+        Recipe recipe = AllRecipe.get(index) ;
     }
 
 
