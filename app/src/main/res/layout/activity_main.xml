@@ -27,7 +27,6 @@
         android:layout_height="95dp"
         app:srcCompat="@drawable/recipeek_logo"
         android:id="@+id/logo"
-        android:onClick="EditText"
         />
 
     <Button

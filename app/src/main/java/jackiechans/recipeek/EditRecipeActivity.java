@@ -258,7 +258,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         startActivityForResult(intent,0);
     }
 
-    public void MoreIngredient(View view){ //OnClick to add more ingredients
+    public void MoreIngredient(){ //OnClick to add more ingredients
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
         LinearLayout linearLayout = createLinear();
         mLayout.addView(linearLayout);
@@ -293,7 +293,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         newtext.setInputType(InputType.TYPE_CLASS_TEXT);
         return newtext;
     }
-    public void moreStep(View view){ //OnClick , Add more steps
+    public void moreStep(){ //OnClick , Add more steps
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.steps_container);
         EditText stepEditText =createNewStepEditText();
         mLayout.addView(stepEditText);
