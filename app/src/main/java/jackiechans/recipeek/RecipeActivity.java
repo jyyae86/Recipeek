@@ -57,7 +57,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         for (int i = 0; i < instructions.size(); i++){
             stepNum = i +1;
-            tv.append(i + ". " +instructions.get(i) +" \n\n");
+            tv.append(stepNum + ". " +instructions.get(i) +" \n\n");
         }
 
     }
