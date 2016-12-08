@@ -44,8 +44,10 @@ public class EditRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_recipe);
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
-        int index = 0;
-        Recipe recipe = AllRecipe.get(index);
+        Recipe a = MainActivity.selectedRecipe;
+        int index = MainActivity.AllRecipe.indexOf(a);
+        myRecipe = AllRecipe.get(index);
+        Recipe recipe = a;
         for(int i=0;i<recipe.getIngredientsSum();i++){//add ingredient
 
             LinearLayout mLayout = (LinearLayout) findViewById(R.id.ingredientContainer);
