@@ -63,7 +63,7 @@ public class RecipeActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textIngredients);
         tv.setText("");
         for (int i = 0; i < ingredient.size(); i++){
-            tv.append("&#8226;" + ingredient.get(i).getQuantity() + " " + ingredient.get(i).getName() + "/n");
+            tv.append("•" + ingredient.get(i).getQuantity() + 1 + " " + ingredient.get(i).getName() + "/n");
         }
 
     }
