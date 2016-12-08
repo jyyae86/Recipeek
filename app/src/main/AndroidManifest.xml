@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
         <activity android:name=".done" />
         <activity android:name=".Update_addSteps" />
         <activity android:name=".Upload_main" />
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".ListOfSearch" />
         <activity android:name=".helpActivity" />
         <activity android:name=".FavouriteRecipe" />
         <activity
