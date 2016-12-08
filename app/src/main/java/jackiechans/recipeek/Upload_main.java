@@ -44,6 +44,7 @@ public class Upload_main extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
+
     }
 
     public void createActivityDone(View view) {
