@@ -53,7 +53,7 @@ public class RecipeActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textInstructions);
         tv.setText("");
         for (Integer i = 1 ; i < instructions.size()+1; i++){
-            tv.append(i.toString() + ". " +instructions.get(i) +"/n/n");
+            tv.append(i.toString() + ". " +instructions.get(i) +"\n\n");
         }
 
     }
@@ -63,7 +63,7 @@ public class RecipeActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textIngredients);
         tv.setText("");
         for (int i = 0; i < ingredient.size(); i++){
-            tv.append("•" + ingredient.get(i).getQuantity() + " " + ingredient.get(i).getName() + "/n");
+            tv.append("•" + ingredient.get(i).getQuantity() + " " + ingredient.get(i).getName() + "\n");
         }
 
     }
