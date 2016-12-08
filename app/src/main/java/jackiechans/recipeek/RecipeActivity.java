@@ -1,19 +1,24 @@
 package jackiechans.recipeek;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-/**
- * Created by jyyae86 on 2016-11-30.
- */
 
-public class FavouriteRecipe extends AppCompatActivity{
-    public void onCreate(Bundle savedInstanceState){
+public class RecipeActivity extends AppCompatActivity {
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favourite_recipes);
+        setContentView(R.layout.activity_recipe);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Recipe");
     }
     //START MENU CREATION
     //Creates default menu containing help and settings
@@ -49,6 +54,4 @@ public class FavouriteRecipe extends AppCompatActivity{
         startActivity(intent);
     }
     //END MENU CREATION
-
-
 }
